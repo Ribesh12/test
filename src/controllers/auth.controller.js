@@ -162,23 +162,3 @@ export const logout = async (req, res) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
-
-export const register = async (req, res) => {
-  try {
-    const { username, email, name, address, phone, password } = req.body;
-
-    if (email && name && address && phone) {
-      return registerHospitalAdmin(req, res);
-    } else if (username && password) {
-      return registerWebsiteAdmin(req, res);
-    } else {
-      return res.status(400).json({
-        error:
-          'Invalid request. Provide either website admin or hospital admin credentials.',
-      });
-    }
-  } catch (error) {
-    console.error('Error during registration:', error);
-    return res.status(500).json({ error: 'Internal server error' });
-  }
-};
